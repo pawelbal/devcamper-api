@@ -4,10 +4,11 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const colors = require('colors');
 
-const bootcampsRoutes = require('./routes/bootcampsRoutes');
-
 // Load env vars
 dotenv.config({ path: './config/config.env' });
+
+const bootcampsRoutes = require('./routes/bootcampsRoutes');
+const errorHandler = require('./middleware/error');
 
 const app = express();
 
@@ -21,6 +22,8 @@ if (process.env.NODE_ENV === 'development') {
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcampsRoutes);
+
+app.use(errorHandler);
 
 // Connect to database
 const connectDB = async () => {
