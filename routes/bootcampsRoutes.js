@@ -8,16 +8,14 @@ const {
   getBootcampsInRadius,
   bootcampPhotoUpload,
 } = require('../controllers/bootcampsContr');
-
 const Bootcamp = require('../models/BootcampModel');
-
-const advancedResults = require('../middleware/advancedResults');
 
 // Include other ressource routers
 const courseRouter = require('./coursesRoutes');
 
 const router = express.Router();
 
+const advancedResults = require('../middleware/advancedResults');
 // Bring authorization middleware
 const { protect, authorize } = require('../middleware/auth');
 
